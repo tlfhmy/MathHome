@@ -92,7 +92,9 @@ $$
     N_5 \equiv 1(mod \ \ 5),\ \ N_5|4 &\Rightarrow N_5=1
 \end{align*}
 То $\exists H \lhd G$, где $|H| = 5$ и $|G| = 20$\\
-$\therefore G \rhd H \cong \mathbb{Z}_5 \rhd [H,H] = \{e\}$\\
+$\therefore G \rhd H \cong \mathbb{Z}_5$\\
+$H$ абелева, то она разрешима. $|G/H|=\frac{20}{5}=4$,то $G/H \cong \mathbb{Z}_4$ или\\
+$G/H \cong V_4$, каждая из них абелева и разрешима.\\
 $\therefore G$ разрешима.\\
 \\
 б)\\
@@ -101,7 +103,36 @@ N_5 \equiv 1 (mod \ \ 5),\ \ N_5 | 4 \Rightarrow N_5 = 1
 $$
 То $G \rhd H$, $\exists |H|=5^2=25$\\
 $\because 5 \text{ простое число}$\\
-$\therefore H$ абелева.\\
+$\therefore H$ абелева, то она разрешима. $|G/H|=\frac{100}{25}=4$,то $G/H \cong \mathbb{Z}_4$ или\\
+$G/H \cong V_4$, каждая из них абелева и разрешима.\\
 $\therefore G \rhd H \rhd [H,H] = {e}$
 $\therefore G(|G|=100)$ разрешима.
+
+\newpage
+\begin{problem}
+    Постройте производные ряды коммутантов для всех групп из 12 элементов.
+\end{problem}
+Решение:\\
+любая группа из 12 элементов изоморфна одной из\\
+1)$\mathbb{Z}_{12}$ ~~ 2)$\mathbb{Z}_2 \oplus \mathbb{Z}_6$ ~~ 3) $G=\langle a,b|O(a)=3,O(b)=4,bab^{-1}=a^{-1}\rangle$\\
+4)$D_6$ ~~ 5)$A_4$
+\begin{enumerate}
+    \begin{item}{$\mathbb{Z}_{12}$}
+        $$ \mathbb{Z}_{12} \supset \mathbb{Z}_{12}'=[\mathbb{Z}_{12},\mathbb{Z}_{12}]=\{e\} $$
+    \end{item}
+    \begin{item}{$\mathbb{Z}_2 \oplus \mathbb{Z}_6$}
+        $$G = \mathbb{Z}_2 \oplus \mathbb{Z}_6 \supset G'=[G,G]=\{e\}$$
+        так как $\mathbb{Z}_2 \oplus \mathbb{Z}_6$ абелева.
+    \end{item}
+    \begin{item}{$G=\langle a,b|O(a)=3,O(b)=4,bab^{-1}=a^{-1}\rangle$}
+        $$G \supset G'=[G,G]=\langle a \rangle \supset G''=[G',G']=\{e\}$$
+    \end{item}
+    \begin{item}{$D_6$}
+        $$D_6 \supset D_6'=\langle a^2 \rangle \supset D_6''=[D_6',D_6']=\{e\}$$
+    \end{item}
+    \begin{item}{$A_4$}
+        $$A_4 \supset [A_4,A_4]=V_4 \supset [V_4,V_4]=\{e\}$$
+    \end{item}
+\end{enumerate}
+То все они разрешимы.
 \end{document}
