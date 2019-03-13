@@ -1,0 +1,208 @@
+\documentclass[a4paper,14pt]{article}
+\linespread{1.2}
+\usepackage{amsthm,amsmath,amssymb}
+\begin{document}
+    \begin{center}
+        Tang Lin\\
+        \today
+    \end{center}
+
+    Problem: Please classify all groups which consists of 18 elements.\\
+    Solve:\\
+    $$ 18 = 2\cdot 3^2 $$
+    From The Third Theorem of Syllow, we have:
+    \begin{align*}
+        N_2 \equiv 1 (mod \ 2) \ \  N_2|9 &\Rightarrow N_2 = 1,3,9\\
+        N_3 \equiv 1 (mod \ 3) \ \  N_3|2 &\Rightarrow N_3 = 1
+    \end{align*}
+    So we have 2 cases:
+    \begin{enumerate}
+
+        \begin{item}{$N_2 = 1, N_3 = 1$}
+            In this situation,there is only one 2-Syllow subgroup and one 3-Syllow subgroup, so
+            $G \cong S_2 \oplus S_3$, where $|S_2|=2,|S_3|=9$.\\
+            There will be 2 situations:
+            \begin{enumerate}
+                \begin{item}
+                    $$G \cong \mathbb{Z}_2 \oplus \mathbb{Z}_9 \cong \mathbb{Z}_{18} $$
+                \end{item}
+                \begin{item}
+                    $$G \cong \mathbb{Z}_2 \oplus \mathbb{Z}_3 \oplus \mathbb{Z}_3 \cong \mathbb{Z}_3 \oplus \mathbb{Z}_6 $$
+                \end{item}
+            \end{enumerate}
+        \end{item}
+
+        \begin{item}{$N_2 \neq 1, N_3 = 1$}\\
+            $S_3 \lhd G$\\
+            So $G \cong S_3 \leftthreetimes K$,where $|K|=2$.\\
+            \begin{enumerate}
+                \begin{item}{$S_3 \cong \mathbb{Z}_9$}
+                    We can get automorphism of $S_3 \cong \mathbb{Z}_9$: $\text{Aut}(\mathbb{Z}_9) = H \cong \text{Aut}(S_3)$,where $|H| = 6$.\\
+                    So We can make a table of automorphism,we assume $S_3=\langle a \rangle$:
+                    \begin{align*}
+                        \varepsilon && e && a   && a^2 && a^3 && a^4 && a^5 && a^6 && a^7 && a^8\\
+                        \sigma_1    && e && a^2 && a^4 && a^6 && a^8 && a   && a^3 && a^5 && a^7\\
+                        \sigma_2    && e && a^4 && a^8 && a^3 && a^7 && a^2 && a^6 && a   && a^5\\
+                        \sigma_3    && e && a^5 && a   && a^6 && a^2 && a^7 && a^3 && a^8 && a^4\\
+                        \sigma_4    && e && a^7 && a^5 && a^3 && a   && a^8 && a^6 && a^4 && a^2\\
+                        \sigma_5    && e && a^8 && a^7 && a^6 && a^5 && a^4 && a^3 && a^2 && a
+                    \end{align*}
+                    Where $\varepsilon,\sigma_1,\sigma_2,\sigma_3,\sigma_4,\sigma_5$ are elements of $\text{Aut}(S_3)$.\\
+                    Without difficut we can get rank of each map of isomorphism:
+                    \[
+                        O(\sigma_1) = 6, O(\sigma_2)=3,O(\sigma_3)=6,O(\sigma_4)=3,O(\sigma_5)=2
+                        \]
+                    $\because$There is map with rank 6, so $\text{Aut}(S_3)\cong \mathbb{Z}_6$.\\
+                    Now we assume $K=\langle b \rangle,|K|=2$, if we can find a homormorphism $\varphi:K \rightarrow \text{Aut}(S_3)$, then we can establish a group.\\
+                    $\because$ In subgroup $K$, there are only elemnts with rank 2 and zero.\\
+                    So we can construct a map:\\
+                    \begin{align*}
+                        \varphi:K &\rightarrow \text{Aut}(S_3)\\
+                        e &\longmapsto \varepsilon\\
+                        b &\longmapsto \sigma_5 \\
+                    \end{align*}
+                    So we can get a group with form:
+                    \[
+                        G\cong \langle a,b|a^9=b^2=e,bab=a^{-1} \rangle \cong D_9
+                        \]
+                \end{item}
+
+                \begin{item}{$S_3\cong \mathbb{Z}_3 \oplus \mathbb{Z}_3$}\\
+                    $\because|S_3|=9=3^2,\therefore S_3$ is Abelian group. We can write $S_3$ in form
+                    \[
+                        S_3=\langle a,b|a^3=b^3=1\rangle
+                        \]
+                    $\because S_3 \lhd G,\therefore cS_3c=S_3$,where $c \in K=\langle c \rangle,|K|=2$.\\
+                    So $\exists i_1,j_1,i_2,j_2 \in \{0,1,2\}$,and 
+                    \[ cac=a^{i_1}b^{j_1}\]
+                    \[ cbc=a^{i_2}b^{j_2}\]
+                    Therefore
+                    \begin{align*}
+                        cac &= a^{i_1}b^{j_1}\\
+                        ccacc &= ca^{i_1}b^{j_1}c\\
+                        a &= ca^{i_1}ccb^{j_1}c\\
+                        a &= (cac)^{i_1}(cbc)^{j_1}\text{, becasue } ca^nc=(cac)(cac)\cdots(cac)=(cac)^n\\
+                        a &= (a^{i_1}b^{j_1})^{i_1}(a^{i_2}b^{j_2})^{j_1}\\
+                        \because S_3 \text{ is Abelian group, so}\\
+                        a &= a^{i_1^2+i_2j_1}b^{i_1j_1+j_2j_1}
+                    \end{align*}
+                    Analogously, we can get
+                    \begin{align*}
+                        cbc &= a^{i_2}b^{j_2}\\
+                        ccbcc &= ca^{i_2}b^{j_2}c\\
+                        b &= ca^{i_2}ccb^{j_2}c\\
+                        b &= (cac)^{i_2}(cbc)^{j_2}\\
+                        b &= (a^{i_1}b^{j_1})^{i_2}(a^{i_2}b^{j_2})^{j_2}\\
+                        b &= a^{i_1i_2+i_2j_2}b^{i_2j_1+j_2^2}
+                    \end{align*}
+                    Becase in $S_3$, $\langle a \rangle \cup \langle b \rangle = \emptyset$, so we can get a congruence equation:
+                    $$
+                    \begin{cases}
+                        i_1^2 + i_2j_1 \equiv 1 (\text{mod 3})\\
+                        i_1j_1+ j_2j_1 \equiv 0 (\text{mod 3})\\
+                        i_1i_2+ i_2j_2 \equiv 0 (\text{mod 3})\\
+                        i_2j_1+ j_2^2  \equiv 1 (\text{mod 3})
+                    \end{cases}
+                    $$
+                    To solve this equation, we can respectively let $i_1=0,1,2$, and discuss them, but it is little complex. There will be a better method by using
+                    computer program. This is Python code.
+                    \begin{verbatim}
+DM = []
+for i in range(0,3):
+    for j in range(0,3):
+        for k in range(0,3):
+            for l in range(0,3):
+                DM.append((i,j,k,l))
+
+#       i1^2  + i2*j1 = 1 (mod 3)
+#       i1*j1 + j2*j1 = 0 (mod 3)
+#       i1*i2 + i2*j2 = 0 (mod 3)
+#       i2*j1 + j2^2  = 1 (mod 3)
+#   There I use representations: i[0] ~ i1; i[1]~j1; i[2]~i2; i[3]~j2
+
+Ans = []
+for i in DM:
+    if (i[0]**2 + i[2]*i[1]) % 3 == 1 and\
+    (i[0]*i[1] + i[3]*i[1]) % 3 == 0 and\
+    (i[0]*i[2] + i[2]*i[3]) % 3 == 0 and\
+    (i[2]*i[1] + i[3]**2) % 3 == 1:
+        Ans.append(i)
+
+print(Ans)
+                    \end{verbatim}
+                    Then we will get answers:
+                    $(i_1,j_1,i_2,j_2) \in \{(0, 1, 1, 0), (0, 2, 2, 0), (1, 0, 0, 1), (1, 0, 0, 2), (1, 0, 1, 2),\\
+                     (1, 0, 2, 2), (1, 1, 0, 2), (1, 2, 0, 2), (2, 0, 0, 1), (2, 0, 0, 2), (2, 0, 1, 1), (2, 0, 2, 1),\\
+                     (2, 1, 0, 1), (2, 2, 0, 1)\}$\\
+                     For these solutions, we can construct conjugation relationship:
+                     \begin{align*}
+                         \text{1) } cac&=b      &   cbc&=a\\
+                         \text{2) } cac&=b^2    &   cbc&=a^2\\
+                         \text{3) } cac&=a      &   cbc&=b\\
+                         \text{4) } cac&=a      &   cbc&=b^2\\
+                         \text{5) } cac&=a      &   cbc&=ab^2\\
+                         \text{6) } cac&=a      &   cbc&=a^2b^2\\
+                         \text{7) } cac&=ab     &   cbc&=b^2\\
+                         \text{8) } cac&=ab^2   &   cbc&=b^2\\
+                         \text{9) } cac&=a^2    &   cbc&=b\\
+                         \text{10)} cac&=a^2    &   cbc&=b^2\\
+                         \text{11)} cac&=a^2    &   cbc&=ab\\
+                         \text{12)} cac&=a^2    &   cbc&=a^2b\\
+                         \text{13)} cac&=a^2b   &   cbc&=b\\
+                         \text{14)} cac&=a^2b^2 &   cbc&=b\\
+                     \end{align*}
+                     But when we compare pairs [4), 9)],[5), 13)],[6), 14)],[7), 11)] and [8), 12)], we will discover that if we exchange status of a and b, and
+                     they are the same. So, in fact we could just explore cases 1), 2), 3), 4), 5), 6), 7), 8), 10).\\
+                     Now we will consider them:
+                     \begin{enumerate}
+                         \item $cac=b,cbc=a$
+                            $$ G_1 = \langle a,b,c|a^3=b^3=c^2=e,ab=ba,cac=b,cbc=a \rangle $$
+                        \item $cac=b^2,cbc=a^2$
+                            $$ cac=b^2, cbc=a^2 \Rightarrow cac=b^2,cb^2c=(a^2)^2=a $$
+                            $\therefore$ We can construct a map from $G_2$ onto $G_1$
+                            \begin{align*}
+                                \varphi:G_2 &\to G_1\\
+                                c &\longmapsto c\\
+                                a &\longmapsto a\\
+                                b^2 &\longmapsto b
+                            \end{align*}
+                            We can certify that $c,a$ and $b^2$ all are generators,and we can use $a$ and $b^2$ to generate group $S_3$, 
+                            so this map will be isomorphism. The only difference between $G_2$ and $G_1$ is
+                            that we exchanged the symols of $b$ and $b^2$. So $G_2 \cong G_1$.
+                        \item $cac=a, cbc=b$\\
+                            In this situation, we will get
+                            \[ca=ac,cb=bc,ab=ba \]
+                            So $G_3$ will be an Abelian group, because$\forall a^{r_i}b^{s_i}c^{t_i} \in G_3,i = 1,2$,\\
+                            \begin{align*}
+                                a^{r_1}b^{w_1}c^{t_1} \cdot a^{r_2}b^{s_2}c^{t_2} &= a^{r_1+r_2}b^{s_1+s_2}c^{t_1+t_2}\\
+                                                    &= a^{r_2}b^{s_2}c^{t_2} \cdot a^{r_1}b^{s_1}c^{t_1}
+                            \end{align*}
+                            But $N_2 \neq 1$,so $G_3$ is impossible Abelian group, therefore it leads to contradiction. And $G_3$ does not exist.
+                        \item $cac=a,cbc=b^2$
+                            $$cac=a,cbc=b^2 \Rightarrow cabc=caccbc=ab^2,cab^2c=ab$$
+                            And now construct map from $G_4$ onto $G_1$:
+                            \begin{align*}
+                                \varphi:G_4 &\to G_1\\
+                                c &\longmapsto c\\
+                                ab &\longmapsto a\\
+                                ab^2 &\longmapsto b
+                            \end{align*}
+                            In this situation, we can proof that $\langle ab,ab^2 \rangle = \langle a,b \rangle = S_3$,because of
+                            $abab^2=a^2,(a^2)^2=a,(ab)^2ab^2=b$. So $ab$ and $ab^2$ are generators and they can generate $S_3$, and $\varphi$ is isomorphism.
+                            We can change symols $a$ to $ab$ and $b$ to $ab^2$, then we will get $G_4$ from $G_1$. So $G_4 \cong G_1$.
+                        \item $cac=a,cbc=ab^2$
+                            $$cbc=ab^2 \Rightarrow cbc=ab^2,cab^2c=b$$
+                            For map:
+                            \begin{align*}
+                                \varphi:G_5 &\to G_1\\
+                                c &\longmapsto c\\
+                                ab^2 &\longmapsto a\\
+                                b &\longmapsto b
+                            \end{align*}
+                            Analogously,we can certify that $\langle ab^2,b \rangle = S_3$,$\because ab^2b=a$. Therefore, $\varphi$ is isomorphism, and $G_5 \cong G_1$.  
+                     \end{enumerate}
+                \end{item}
+            \end{enumerate}
+        \end{item}
+    \end{enumerate}
+\end{document}
