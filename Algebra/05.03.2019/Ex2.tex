@@ -95,7 +95,7 @@
                         b &= (a^{i_1}b^{j_1})^{i_2}(a^{i_2}b^{j_2})^{j_2}\\
                         b &= a^{i_1i_2+i_2j_2}b^{i_2j_1+j_2^2}
                     \end{align*}
-                    Becase in $S_3$, $\langle a \rangle \cup \langle b \rangle = \emptyset$, so we can get a congruence equation:
+                    Becase in $S_3$, $\langle a \rangle \cup \langle b \rangle = \emptyset$, so we can get a congruence equations system:
                     $$
                     \begin{cases}
                         i_1^2 + i_2j_1 \equiv 1 (\text{mod 3})\\
@@ -104,7 +104,60 @@
                         i_2j_1+ j_2^2  \equiv 1 (\text{mod 3})
                     \end{cases}
                     $$
-                    To solve this equation, we can respectively let $i_1=0,1,2$, and discuss them, but it is little complex. There will be a better method by using
+                    To solve this equation, we can respectively let $i_1 \equiv 0,1,2 (\text{mod 3})$, and discuss them, but it is little complex.
+                    \begin{enumerate}
+                        \item $i_1 \equiv 0 (\text{mod 3})$\\
+                            We can simplify this congruence equation system to:
+                            $$
+                            \begin{cases}
+                            i_2j_1 \equiv 1 (\text{mod 3})\\
+                            j_2j_1 \equiv 0 (\text{mod 3})\\
+                            i_2j_2 \equiv 0 (\text{mod 3})\\
+                            i_2j_1+ j_2^2  \equiv 1 (\text{mod 3})
+                            \end{cases}
+                            $$
+                            It is not difficut to konw that $\j_2 \equiv 0 (\text{mod 3})$ and $j_1 \not \equiv 0 (\text{mod 3})$, and we can
+                            more simplify it to just one equation $i_2j_1 \equiv 1 (\text{mod 3})$
+                            And now we can get the first two solutions $(i_1,j_1,i_2,j_2) = (0,1,1,0) \text{or} (0,2,2,0)$.
+                        \item $i_1 \equiv 1 (\text{mod 3})$\\
+                            We can simplify this congruence equation system to:
+                            $$
+                            \begin{cases}
+                                i_2j_1 \equiv 0 (\text{mod 3})\\
+                                j_1(j_2+1) \equiv 0 (\text{mod 3})\\
+                                i_2(j_2+1) \equiv 0 (\text{mod 3})\\
+                                i_2j_1+ j_2^2  \equiv 1 (\text{mod 3})
+                            \end{cases}
+                            $$
+                            If $j_1 \equiv 0 (\text{mod 3})$, then we can get system of two equations, 
+                            $i_2(j_2+1) \equiv 0 (\text{mod 3})$ and
+                            $i_2j_1+ j_2^2  \equiv 1 (\text{mod 3})$, so in this case we can get answers will have form $(i_1,j_1,i_2,j_2) = (1,0,*,*)$,
+                            if $i_2 \equiv 0 (\text{mod 3})$, we will get answers $(1,0,0,1)$ and $(1,0,0,2)$, and if $i_2 \equiv 1 (\text{mod 3})$,
+                            we will get answer $(1,0,1,2)$, if $i_2 \equiv 2 (\text{mod 3})$, get $(1,0,2,2)$.\\
+                            If $j_1\not \equiv 0 (\text{mod 3})$, and must $i_2 \equiv 0 (\text{mod 3})$, we can get system with 2 equations
+                            $j_1(j_2 + 1) \equiv (\text{mod 3})$ and $j_2^2 \equiv 1 (\text{mod 3})$, but if $j_2 \equiv 1 (\text{mod 3})$,we will
+                            find that $j_1 \equiv 0 (\text{mod 3})$, so there will only be $j_2 \equiv 2 (\text{mod 3})$,and 
+                            we can get solutions $(1,1,0,2),(1,2,0,2)$.
+                        \item $i_1 \equiv 2 (\text{mod 3})$\\
+                            We can simplify system to:
+                            $$
+                            \begin{cases}
+                                i_2j_1 \equiv 0 (\text{mod 3})\\
+                                j_1(j_2+2) \equiv 0 (\text{mod 3})\\
+                                i_2(j_2+2) \equiv 0 (\text{mod 3})\\
+                                i_2j_1+ j_2^2  \equiv 1 (\text{mod 3})
+                            \end{cases}
+                            $$
+                            If $j_1 \equiv 0 (\text{mod 3})$, we can get system of 2 equations,$i_2(j_2+2) \equiv 0 (\text{mod 3})$ and
+                            $j_2^2 \equiv 1 (\text{mod 3})$, in this case we will get answers with form $(2,0,*,*)$,if $j_2 \equiv 1 (\text{mod 3})$,
+                            we will get answers $(2,0,0,1),(2,0,1,1) \text{ and } (2,0,2,1)$, if $j_2 \equiv 2 (\text{mod 3})$, we will get answer
+                            $(2,0,0,2)$.
+                            If $j_1 \not \equiv 0 (\text{mod 3})$, so there must be $i_2 \equiv 0 (\text{mod 3})$ and $j_2 + 2 \equiv 0 (\text{mod 3})$,
+                            so answer are $(2,1,0,1)$ and $(2,2,0,1)$.
+                    \end{enumerate}
+                    So we have solved this congruence equations system.\\
+                    
+                    But there is a better method by using
                     computer program. This is Python code.
                     \begin{verbatim}
 DM = []
@@ -149,7 +202,7 @@ print(Ans)
                          \text{11)} cac&=a^2    &   cbc&=ab\\
                          \text{12)} cac&=a^2    &   cbc&=a^2b\\
                          \text{13)} cac&=a^2b   &   cbc&=b\\
-                         \text{14)} cac&=a^2b^2 &   cbc&=b\\
+                         \text{14)} cac&=a^2b^2 &   cbc&=b
                      \end{align*}
                      But when we compare pairs [4), 9)],[5), 13)],[6), 14)],[7), 11)] and [8), 12)], we will discover that if we exchange status of a and b, and
                      they are the same. So, in fact we could just explore cases 1), 2), 3), 4), 5), 6), 7), 8), 10).\\
@@ -162,12 +215,79 @@ print(Ans)
                             $\therefore$ We can construct a map from $G_2$ onto $G_1$
                             \begin{align*}
                                 \varphi:G_2 &\to G_1\\
-                                c &\longmapsto c\\
-                                a &\longmapsto a\\
-                                b^2 &\longmapsto b
+                                c &\longmapsto c_*\\
+                                a &\longmapsto a_*\\
+                                b^2 &\longmapsto b_*\\
+                                \varphi(g_1g_2) &= \varphi(g_1)\varphi(g_2)
                             \end{align*}
+                            Where $g_* \in G_1$.\\
                             We can certify that $c,a$ and $b^2$ all are generators,and we can use $a$ and $b^2$ to generate group $S_3$, 
-                            so this map will be isomorphism. The only difference between $G_2$ and $G_1$ is
+                            so next, we will prove that the map will be isomorphism. First of all we have to certify that it is a function:\\
+                            Becasue $G$ includes 18 elements, and $|a|*|b|*|c|=3*3*2=18$, we will spontaneously consider that every element of $G$
+                            can be represented as form $a^rb^sc^t$, now we can see:
+                            \begin{align*}
+                                1) \ \ \ a^{r}b^{s}c^t &= a^{r}b^{s}c^{t} = b^sa^rc^t\\
+                                2) \ \ \ a^{r}cb^{s} &= a^{r}cb^scc\\
+                                                    &= a^r(cbc)^sc\\
+                                                    &= a^ra^{2s}c = a^{2s+r}c\\
+                                3)\ \ \ ca^rb^s &= ca^rccb^scc\\
+                                                &= b^{2r}a^{2s}c = cb^sa^r
+                            \end{align*}
+                            Therefore, it indeed exits with this form. For group $G_1$, analogously, we can get the same consequence.\\
+                            Therefore for any elment $g$ in $G$, we can assume there will be $r,s,t \in \mathbb{Z}$, and $g = a^rb^sc^t$,so for any
+                            $g_1 = a^{r_1}b^{s_1}c^{t_1}, g_2 = a^{r_2}b^{s_2}c^{t_2}$ and if $g_1 = g_2$, then we will get 
+                            \begin{align*}
+                                a^{r_1}b^{s_1}c^{t_1} &= a^{r_2}b^{s_2}c^{t_2}\\
+                                b^{-s_2}a^{r_1-r_2}b^{s_1} &= c^{t_2-t_1}\\
+                                a^{r_1-r_2}b^{s_1-s_2} &= c^{t_2-t_1}
+                            \end{align*}
+                            $\because S_3 \cap \langle c \rangle = \{e\}$, so $a^{r_1-r_2}b^{s_1-s_2} = c^{t_2-t_1}=e$, and infer that
+                            $s_1 \equiv s_2 \text{(mod 3)}, r_1\equiv r_2 \text{(mod 3)}, t_1\equiv t_2 \text{(mod 2)}$\\
+                            Now we can verify it is really function.
+                            \begin{align*}
+                                \varphi(g_1) &= \varphi(a^{r_1}b^{s_1}c^{t_1})\\
+                                            &= \varphi(a^{r_1})\varphi(b^{s_1})\varphi(c^{t_1})\\
+                                            &= (\varphi(a))^{r_1}(\varphi(b))^{s_1}(\varphi(c))^{t_1}\\
+                                            &= {a_*}^{r_1}(\varphi(b^4))^{s_1}{c_*}^{t_1}\\
+                                            &= {a_*}^{r_1}(\varphi(b^2))^{2s_1}c_*^{t_1}\\
+                                            &= {a_*}^{r_1}{b_*}^{2s_1}c^{t_1}      
+                            \end{align*}
+                            and
+                            $$\varphi(g_2) = {a_*}^{r_2}{b_*}^{2s_2}c^{t_2}$$
+                            But as we know, they are equal; becasue $a^{r_1} = a^{r_2}, b^{2s_1}=b^{2s_2},c^{t_1}=c^{t_2}$. And
+                            $\varphi(g_1) = \varphi(g_2)$. So map $\varphi$ is function,and according to our assumption, it is also
+                            homormorphism; now we will prove that it is a bijection. To see other function $\psi$:
+                            \begin{align*}
+                                \psi:G_1 &\to G_2\\
+                                c_* &\longmapsto c\\
+                                a_* &\longmapsto a\\
+                                b_* &\longmapsto b^2\\
+                                \psi(g_{*1}g_{*2}) &= \varphi(g_{*1})\varphi(g_{2*})
+                            \end{align*}
+                            Where $g_{*1},g_{*2} \in G_1$.\\
+                            For every element $g_*=a_*^rb_*sc_*^t$ in $G_1$, we have:
+                            \begin{align*}
+                                \varphi(\psi(a_*^rb_*^sc_*^t)) &= \varphi(\psi(a_*)^r\psi(b_*)^s\psi(c_*)^t)\\
+                                                            &= \varphi(a^rb^{2s}c^t)\\
+                                                            &= \varphi(a)^r\varphi(b)^{2s}\varphi(c)^t\\
+                                                            &= a_*^r\varphi(b^4)^{2s}c_*^t\\
+                                                            &= a_*^r\varphi(b^2)^{4s}c_*^t\\
+                                                            &= a_*^rb_*^{4s}c_*^t\\
+                                                            &= a_*^rb_*^sc_*^t\\
+                                                            &= g_*
+                            \end{align*}  
+                            So $\varphi \circ \psi = e_{G_1}$. Analogously, for $\psi \circ \varphi$, if we assume that $g = a^rb^sc^t$
+                            then we have:
+                            \begin{align*}
+                                \psi(\varphi(a^rb^sc^t)) &= \psi(\varphi(a)^r\varphi(b)^s\varphi(c)^t)\\
+                                                        &= \psi(a_*^rb_*^{2s}c_*^t)\\
+                                                        &= \psi(a_*)^r\psi(b_*)^{2s}\psi(c_*)^t\\
+                                                        &= a^rb^{4s}c^t\\
+                                                        &= a^rb^sc^t\\
+                                                        &= g
+                            \end{align*}
+                            Therefore $\psi \circ \varphi = e_{G_2}$, so they are inverse mapping for each other, and $\varphi$ is acctually
+                            bijection. We have proven that it is isomorphism.The only difference between $G_2$ and $G_1$ is
                             that we exchanged the symols of $b$ and $b^2$. So $G_2 \cong G_1$.
                         \item $cac=a, cbc=b$\\
                             In this situation, we will get
@@ -183,12 +303,12 @@ print(Ans)
                             And now construct map from $G_4$ onto $G_1$:
                             \begin{align*}
                                 \varphi:G_4 &\to G_1\\
-                                c &\longmapsto c\\
-                                ab &\longmapsto a\\
-                                ab^2 &\longmapsto b
+                                c &\longmapsto c_*\\
+                                ab &\longmapsto a_*\\
+                                ab^2 &\longmapsto b_*\\
+                                \varphi(g_1g_2) &= \varphi(g_1)\varphi(g_2)
                             \end{align*}
-                            In this situation, we can proof that $\langle ab,ab^2 \rangle = \langle a,b \rangle = S_3$,because of
-                            $abab^2=a^2,(a^2)^2=a,(ab)^2ab^2=b$. So $ab$ and $ab^2$ are generators and they can generate $S_3$, and $\varphi$ is isomorphism.
+                            In the same way as we used for proof in previous situation, we can get analogous result.
                             We can change symols $a$ to $ab$ and $b$ to $ab^2$, then we will get $G_4$ from $G_1$. So $G_4 \cong G_1$.
                         \item $cac=a,cbc=ab^2$
                             $$cbc=ab^2 \Rightarrow cbc=ab^2,cab^2c=b$$
@@ -197,12 +317,140 @@ print(Ans)
                                 \varphi:G_5 &\to G_1\\
                                 c &\longmapsto c\\
                                 ab^2 &\longmapsto a\\
-                                b &\longmapsto b
+                                b &\longmapsto b\\
+                                \varphi(g_1g_2) &= \varphi(g_1)\varphi(g_2)
                             \end{align*}
-                            Analogously,we can certify that $\langle ab^2,b \rangle = S_3$,$\because ab^2b=a$. Therefore, $\varphi$ is isomorphism, and $G_5 \cong G_1$.  
+                            In the same way we used,we can prove that $\varphi$ is isomorphism $G_5 \cong G_1$.
+                        \item $cac=a,cbc=a^2b^2$
+                            $$cac=a,cbc=a^2b^2 \Rightarrow cbc = a^2b^2, ca^2b^2c=b$$
+                            And consider this map:
+                            \begin{align*}
+                                \varphi:G_6 &\to G_1\\
+                                c &\longmapsto c_*\\
+                                a^2b^2 &\longmapsto a_*\\
+                                b &\longmapsto b_*\\
+                                \varphi(g_1g_2) &= \varphi(g_1)\varphi(g_2)
+                            \end{align*}
+                            Similarly, we can prove that $\varphi$ is isomorphism from $G_6$ onto $G_1$, we need just exchange status of $a$ and $a^2b^2$.
+                            So $G_6 \cong G_1$.
+                        \item $cac=ab, cbc=b^2$
+                            $$cac=ab, cbc=b^2 \Rightarrow cac=ab, cabc=a$$
+                            And map:
+                            \begin{align*}
+                                \varphi:G_7 &\to G_1\\
+                                c &\longmapsto c_*\\
+                                a &\longmapsto a_*\\
+                                ab &\longmapsto b_*\\
+                                \varphi(g_1g_2) &= \varphi(g_1)\varphi(g_2)
+                            \end{align*}
+                            Similarly, we can prove that $\varphi$ is isomorphism from $G_6$ onto $G_1$, we need just exchange status of $b$ and $ab$.
+                            So $G_7 \cong G_1$.
+                        \item $cac=ab^2, cbc=b^2$
+                            $cac=ab^2, cbc=b^2 \Rightarrow cac = ab^2, cab^2c=a$
+                            And map:
+                            \begin{align*}
+                                \varphi:G_8 &\to G_1\\
+                                c &\longmapsto c_*\\
+                                a &\longmapsto a_*\\
+                                ab^2 &\longmapsto b_*\\
+                                \varphi(g_1g_2) &= \varphi(g_1)\varphi(g_2)
+                            \end{align*}
+                            Similarly, we can prove that $\varphi$ is isomorphism from $G_6$ onto $G_1$, we need just exchange status of $b$ and $ab^2$.
+                            So $G_8 \cong G_1$.
+                        \item $cac=a^2, cbc=b^2$\\
+                            In this situation, spontaneously, we will think of the same way as we used for previous situations. But soon we will find that it
+                            becomes useless.\\
+                            We can see 3 cases of them:
+                            \begin{enumerate}
+                                \item $cac = a^2,ca^2c=a$\\
+                                    If we make map like:
+                                    \begin{align*}
+                                        \varphi:G_9 &\to G_1\\
+                                        c &\longmapsto c_*\\
+                                        a &\longmapsto a_*\\
+                                        a^2 &\longmapsto b_*\\
+                                        \varphi(g_1g_2) &= \varphi(g_1)\varphi(g_2)
+                                    \end{align*}
+                                    we will find that $a_* = \varphi(a^4) = \varphi(a^2)^2 = b_*^2$, but we know that $\langle a_* \rangle \cap 
+                                    \langle b_* \rangle = \{e_*\}$, so it is impossible. And this $\varphi$ is not isomorphism.
+                                \item $cbc = b^2, cb^2c=b$\\
+                                    Similarly, if we construct map like:
+                                    \begin{align*}
+                                        \varphi:G_9 &\to G_1\\
+                                        c &\longmapsto c_*\\
+                                        b^2 &\longmapsto a_*\\
+                                        b &\longmapsto b_*\\
+                                        \varphi(g_1g_2) &= \varphi(g_1)\varphi(g_2)
+                                    \end{align*}
+                                    we will find that $b_* = \varphi(b^4) = \varphi(b^2)^2 = a_*^2$, but we know that $\langle a_* \rangle \cap 
+                                    \langle b_* \rangle = \{e_*\}$, so it is impossible. And this $\varphi$ is not isomorphism.
+                                \item $cabc = caccbc = a^2b^2, ca^2b^2c=ab$\\
+                                    Analogously, if map like:
+                                    \begin{align*}
+                                        \varphi:G_9 &\to G_1\\
+                                        c &\longmapsto c_*\\
+                                        ab &\longmapsto a_*\\
+                                        a^2b^2 &\longmapsto b_*\\
+                                        \varphi(g_1g_2) &= \varphi(g_1)\varphi(g_2)
+                                    \end{align*}
+                                    we wil find that $e_*=\varphi(e)=\varphi(a^3b^3)=\varphi(aba^2b^2)=\varphi(ab)\varphi(a^2b^2)=a_*b_*$, this 
+                                    is also impossible, and $\varphi$ is not isomorphism.
+                            \end{enumerate}
+                            Now we have enough reasons to consider that there is not isomorphism between $G_9$ and $G_1$.\\
+                            We will prove our conjecture. Assume that there is an isomorphism $\varphi$\\
+                            Because $O(c_*)=2, O(c)=2$,and they are the only element with rank 2 in respective group, so $\varphi(c)=c_*$.\\
+                            So $\exists a^rb^sc^t: \varphi(a^rb^sc^t)=a_*$,where $r,s \in \{0,1,2\},t \in \{0,1\}$,there will be 2 cases:
+                            \begin{enumerate}
+                                \item $t = 0$\\
+                                    In this case, $\varphi(a^rb^s)=a_*$
+                                    \begin{align*}
+                                        \varphi(a^rb^s)&=a_*\\
+                                        \varphi(ca^rb^sc) &= \varphi(c)a_*\varphi(c)\\
+                                        \varphi(ca^rc)\varphi(cb^sc) &= c_*a_*c_*\\
+                                        \varphi(cac)^r\varphi(cbc)^s &= b_*\\
+                                        \varphi(a^2)^r\varphi(b^2)^s &= b_*\\
+                                        \varphi((a^rb^s)^2) &= b_*\\
+                                        \varphi(a^rb^s)^2 &= b_*\\
+                                        a_*^2 &= b_*
+                                    \end{align*}
+                                    It is impossible, because in group $G_1$, $\langle a_* \rangle \cap \langle b_* \rangle = \{e_*\}$, and
+                                    it causes contradiction. \newpage
+                                \item $t = 1$\\
+                                    In this case, $\varphi(a^rb^sc)=a_*$
+                                    \begin{align*}
+                                        \varphi(a^rb^sc)&=a_*\\
+                                        \varphi(a^rb^s)\varphi(c) &= a_*\\
+                                        \varphi(ca^rb^rc)c_* &= \varphi(c)a_*\varphi(c)\\
+                                        \varphi(ca^rc)\varphi(cb^sc) &= c_*a_*\\
+                                        \varphi(a^rb^s)^2 &= c_*a_* \\
+                                        \varphi(a^rb^s)\varphi(c)\varphi(c)\varphi(a^rb^s)\varphi(c)\varphi(c) &= c_*a_*\\
+                                        \varphi(a^rb^sc)\varphi(c)\varphi(a^rb^sc)\varphi(c) &= c_*a_*\\
+                                        a_*c_*a_*c_* &= c_*a_*\\
+                                        a_*b_* &= c_*a_*\\
+                                        a_*b_*a_*^{-1} = c_*\\
+                                        b_* = c_*
+                                    \end{align*}
+                                    It is no impossible, and causes contradiction.
+                            \end{enumerate}
+                            And it has been proven that there is not isomorphism between $G_9$ and $G_1$. So $G_9 \not \cong G_1$.\\
+                            So
+                            $$
+                            G_9 = \langle a,b,c|a^3=b^3=c^2=e,ab=ba,cac=a^2,cbc=b^2\rangle
+                            $$
+                            is another type of group which consists of 18 elemnts.
                      \end{enumerate}
                 \end{item}
+                And we had find all the types of group which consists of 18 elements.
             \end{enumerate}
         \end{item}
     \end{enumerate}
+    They are 
+    \begin{align*}
+        1)& \mathbb{Z}_{18}\\
+        2)& \mathbb{Z}_3\oplus \mathbb{Z}_6\\
+        3)& D_9\\
+        4)& \langle a,b,c|a^3=b^3=c^2=e,ab=ba,cac=b,cbc=a\rangle\\
+        5)& \langle a,b,c|a^3=b^3=c^2=e,ab=ba,cac=a^2,cbc=b^2\rangle
+    \end{align*}
+    We have completed classification of groups which consists of 18 elemnts.
 \end{document}
