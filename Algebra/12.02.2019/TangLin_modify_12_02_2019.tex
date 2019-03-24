@@ -1,0 +1,128 @@
+\documentclass[12pt]{article}
+
+\usepackage{amssymb,amsmath,amsthm}
+
+\newtheoremstyle{neosn}{0.5\topsep}{0.5\topsep}{\rm}{}{\sc}{.}{ }{\thmname{#1}\thmnumber{ #2}\thmnote{ {\mdseries#3}}}
+\theoremstyle{neosn}
+\newtheorem{problem}{Problem}
+
+\begin{document}
+    \begin{center}
+        {\bf Correction of Homework on 12.02.2019}\\
+        Tanglin
+    \end{center}
+
+    \problem{Correct.}
+
+    \problem{Is group $\mathbb{Z}_2 \times D_3$ and $D_6$ isomorphic?}\\
+    Solution:\\
+    We can describe group $D_3$ and $D_6$ in following forms:
+    \[
+        D_3 = \{\langle \varphi_{D_3},d_{D_3} \rangle| \varphi_{D_3}^3=d_{D_3}^2=e_{D_3},d_{D_3}\varphi_{D_3}d_{D_3}=\varphi_{D_3}^{-1}\}
+        \]
+    \[
+        D_6 = \{\langle \varphi_{D_6},d_{D_6} \rangle| \varphi_{D_6}^6=d_{D_6}^2=e_{D_6},d_{D_6}\varphi_{D_6}d_{D_6}=\varphi_{D_6}^{-1}\}
+        \]
+    So we can write $\mathbb{Z}_2\times D_3$ as form:
+    \[
+        \mathbb{Z}_2\times D_3 = \{(a,b)|a \in \mathbb{Z}_2,b\in D_3\}
+        \]
+    Where $(a_1,b_1)(a_2,b_2)=(a_1a_2,b_1b_2)$ and $a_1,a_2  \in \mathbb{Z}_2,b_1b_2 \in D_3$.\\
+    We will consider a map:
+    \begin{align*}
+        f:\mathbb{Z}_2 \times D_3 &\to D_6\\
+        (z,e_{D_3}) &\longmapsto \varphi_{D_6}^3\\
+        (e_Z,d_{D_3}) &\longmapsto d_{D_6}\\
+        (e_Z,\varphi_{D_3}) &\longmapsto \varphi_{D_6}^{4}\\
+        f(r_1r_2) &= f(r_1)f(r_2)\\
+    \end{align*}
+    We can prove that $f$ is a function.\\
+    $\forall r_1,r_2 \in \mathbb{Z}_2\times D_3$\\
+    $\exists l_1,m_1,n_1$ and $l_2,m_2,n_2 \in \mathbb{Z}$, s.t. $r_1 = (z^{l_1},\varphi_{D_3}^{m_1}d_{D_3}^{n_1}),r_2 = (z^{l_2},\varphi_{D_3}^{m_2}d_{D_3}^{n_2})$\\
+    If $r_1 = r_2$, we can get:
+    \begin{align}
+        l_1 &\equiv l_2 (\text{mod 2})\\
+        m_1 &\equiv m_2 (\text{mod 3})\\
+        n_1 &\equiv n_2 (\text{mod 2})
+    \end{align}
+    Then
+    \begin{align*}
+        f(r_1) &= f((z^{l_1},\varphi_{D_3}^{m_1}d_{D_3}^{n_1}))\\
+                &= f((z^{l_1},e_{D_3})(e_Z,\varphi_{D_3}^{m_1})(e_Z,d_{D_3}^{n_1}))\\
+                &= f((z^{l_1},e_{D_3}))f((e_Z,\varphi_{D_3}^{m_1}))f((e_Z,d_{D_3}^{n_1}))\\
+                &= f((z,e_{D_3}))^{l_1}f((e_Z,\varphi_{D_3}))^{m_1}f((e_Z,d_{D_3}))^{n_1}\\
+                &= \varphi_{D_6}^{3l_1} \varphi_{D_6}^{4m_1}d_{D_6}^{n_1}\\
+                &= \varphi_{D_6}^{3l_1+4m_1}d_{D_6}^{n_1}
+    \end{align*}
+    In the same way, we can get:
+    $$f(r_2)=\varphi_{D_6}^{3l_2+4m_2}d_{D_6}^{n_2}$$\\  
+    From (1),(2),(3), we have:
+    \begin{align*}
+        l_1 &= 2k_1+l_2\\
+        m_1 &=3k_2+m_2\\
+        n_1 &=2k_3+n_2
+    \end{align*}
+    So
+    \begin{align*}
+        3l_1 &= 3\cdot 2k_1+3l_2=6k_1+3l_2\\
+        4m_1 &= 4\cdot 3k_2+4m_2=6\cdot 2k_2 + 4m_2\\
+        n_1 &= 2k_3+n_2
+    \end{align*}
+    And Then
+    \begin{align*}
+        3l_1 &\equiv 3l_2 (\text{mod 6})\\
+        4m_1 &\equiv 4m_2 (\text{mod 6})\\
+        n_1 &\equiv n_2 (\text{mod 2})
+    \end{align*}
+    So we reach our purpose:
+    \begin{align*}
+        3l_1+4m_1 &\equiv 3l_2+4m_2 (\text{mod 6})\\
+        n_1 &\equiv n_2 (\text{mod 2})
+    \end{align*}
+    Based on this system, we can assert:
+    $$\varphi_{D_6}^{3l_1+4m_1}d_{D_6}^{n_1} = \varphi_{D_6}^{3l_2+4m_2}d_{D_6}^{n_2}$$
+    and
+    $$f(r_1)=f(r_2)$$
+    So $f$ is really a function.\\
+
+    Then we consider another function $h$:
+    \begin{align*}
+        h:D_6 &\to \mathbb{Z}_2 \times D_3\\
+            d_{D_6} &\longmapsto (e_Z,d_{D_3})\\
+            \varphi_{D_6} &\longmapsto (z,\varphi_{D_3})\\
+            h(s_1s_2)&=h(s_1)h(s_2)
+    \end{align*}
+    According to the same way, we can prove that $h$ is also a function.\\
+    Now we can see $f\circ h$:\\
+    $\forall g \in D_6,\exists m_1,n_1 \in \mathbb{Z}$ s.t. $g=\varphi_{D_6}^{m_1}d_{D_6}^{n_1}$\\
+    \begin{align*}
+        f\circ h(g) &= f(h(\varphi_{D_6}^{m_1}d_{D_6}^{n_1}))\\
+                    &= f(h(\varphi_{D_6}^{m_1})h(d_{D_6}^{n_1})))\\
+                    &= f((z,\varphi_{D_3})^{m_1}(e_Z,d_{D_3})^{n_1})\\
+                    &= f((z,\varphi_{D_3}))^{m_1}f((e_Z,d_{D_3}))^{n_1}\\
+                    &= \varphi_{D_6}^{7m_1}d_{D_6}^{n_1}\\
+                    &= \varphi_{D_6}^{m_1}d_{D_6}^{n_1}\\
+                    &= g
+    \end{align*}
+    $\therefore f\circ g = \varepsilon_{D_6}$
+    On contrary, we will see $h \circ f$:
+    $\forall g \in \mathbb{Z}_2\times D_3,\exists l_1,m_1,n_1 \in \mathbb{Z}$ s.t. $g= (z^{l_1},\varphi_{D_3}^{m_1}d_{D_3}^{n_1})$\\
+    \begin{align*}
+        h \circ f(g) &= h(f((z^{l_1},\varphi_{D_3}^{m_1}d_{D_3}^{n_1})))\\
+                    &= h(f((z^{l_1},e_{D_3}))f((e_Z,\varphi_{D_3}^{m_1}))f((e_Z,d_{D_3}^{n_1})))\\
+                    &= h(f((z,e_{D_3}))^{l_1}f((e_Z,\varphi_{D_3}))^{m_1}f((e_Z,d_{D_3}))^{n_1})\\
+                    &= h(\varphi_{D_6}^{3l_1}\varphi_{D_6}^{4m_1}d_{D_6}^{n_1})\\
+                    &=h(\varphi_{D_6})^{3l_1+4m_1}h(d_{D_6})^{n_1}\\
+                    &=(z^{3l_1+4m_1},\varphi_{D_3}^{3l_1+4m_1})(e_Z,d_{D_3}^{n_1})\\
+                    &=(z^{3l_1}z^{4m_1},\varphi_{D_3}^{3l_1}\varphi_{D_3}^{4m_1}d_{D_3}^{n_1})\\
+                    &=(z^{l_1},\varphi_{D_3}^{m_1}d_{D_3}^{n_1})\\
+                    &=g
+    \end{align*}
+    $\therefore h \circ f = \varepsilon_{\mathbb{Z}_2\times D_3}$\\
+    Therefore we can get consequence, functions $f$ and $h$ are inverse functions of each other.\\
+    So, $f$ is an isomorphism from $\mathbb{Z}_2\times D_3$ onto $D_6$.\\
+    $\therefore \mathbb{Z}_2\times D_3 \cong D_6 $\\
+    The proof has been completed.\\
+
+    \problem{Correct.}
+\end{document}
