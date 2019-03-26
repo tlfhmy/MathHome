@@ -1,0 +1,138 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amssymb,amsmath,amsthm}
+
+\newtheoremstyle{neosn}{0.5\topsep}{0.5\topsep}{\rm}{}{\sc}{.}{ }{\thmname{#1}\thmnumber{ #2}\thmnote{ {\mdseries#3}}}
+\theoremstyle{neosn}
+\newtheorem{problem}{Задача}
+\renewcommand{\proofname}{Доказательство}
+
+\begin{document}
+\begin{center}
+    {\bf \Large Домашнее задание от 19.02.2019}\\
+    Тан Линь
+\end{center}
+
+\begin{problem}
+    Найдите коммутант группы диэдра $D_n$. Сколько в нем элементов?
+    (Отдельно рассмотрите случаи четного и нечетного $n$). Разрешима ли группа $D_n$?
+\end{problem}
+Решение:\\
+\[
+    D_n := \langle a,b \rangle\ \ O(a)=n,\ O(b)=2,\ bab=a^{-1},\ \forall k \not \equiv 0(mod \ \ n),b \neq a^k
+    \]
+\[
+    D_n=\{a^{r_1}b^{s_1}\cdots a^{r_k}b^{s_k}|0 \leqslant r_i < n,s_k \in \{0,1\} \}
+    \]
+\begin{align*}
+    bab = a^{-1} &\Rightarrow ba = a^{-1}b = a^{n-1}b \\
+    ba^2  =ba \cdot a = a^{n-1}ba = (a^{n-1})^2b=a^{n-2}b &\Rightarrow ba^2 = a^{n-2}b\\
+    \vdots \\
+    ba^{n-1}=ba^{n-2}a=a^2ba=a^2a^{n-1}b=ab &\Rightarrow ba^{n-1}=ab
+\end{align*}
+То   у нас есть 
+$$
+    ba^r=a^{n-r}b=a^{-r}b
+$$
+Поэтому для любого элемента из группы $D_n$:
+\[
+    a^{r_1}b^{s_1}\cdots a^{r_k}b^{s_k} = a^{r'}b^{s'}
+    \]
+где $0 \leqslant r' < n$ и $s' \in \{0,1\}$\\
+Теперь докажем что, для $a^{r_1}b^{s_1}=a^{r_2}b^{s_2}$, то $r_1 \equiv r_2 (mod \ \ n)$ и $s_1 \equiv s_2 (mod\ \ 2)$, так 
+как $a^{r_1 - r_2} = b^{s_2-s_1}$ и $\forall k \not \equiv 0(mod \ \ n),b \neq a^k$.
+
+Теперь рассмотрим коммутант группы $D_n$:
+\[
+    D_n'=[D_n,D_n] = \{[g_1,g_2]|g_1 \in G,g_2 \in G\}
+    \]
+\begin{enumerate}
+    \begin{item}
+        $[a^r,a^s]=e$
+    \end{item}
+    \begin{item}
+        $[a_r,b]=a^rba^{-r}b=a^ra^r=a^{2r}$
+    \end{item}
+    \begin{item}
+        $[a^rb,a^s]=a^rba^sba^{-r}a^{-s}=a^ra^{-s}a^{-r}a^{-s}=a^{-2s}$
+    \end{item}
+    \begin{item}
+        $[a^rb,b]=a^rbbba^{-r}b=a^ra^r=a^{2r}$
+    \end{item}
+\end{enumerate}
+то $D_n' \subseteq \langle a^2 \rangle$, но$[a,b]=aba^{-1}b=a^2$,то $\langle a^2 \rangle \subseteq D_n'$, то $D_n'=\langle a^2 \rangle$
+
+Если
+\begin{enumerate}
+    \begin{item}{$n \equiv 0 (mod \ \ 2)$}
+        \[D_n'=\langle a^2 \rangle,\quad |D_n'|=\frac{n}{2}\]            
+    \end{item}
+    \begin{item}{$n \equiv 1 (mod \ \ 2)$}
+        \[D_n'=\langle a^2 \rangle = \langle a \rangle,\quad |D_n'|=n\]
+    \end{item}
+\end{enumerate}
+То $D_n \rhd D_n'=\langle a^2 \rangle \rhd D_n''=[D_n',D_n']=\{e\}$, поэтому группа $D_n$ разрешима.
+\\
+\\
+\\
+\\
+\\
+\begin{problem}
+    Докажите, что любая группа из\\
+    а) 20,\\
+    б) 100 \\
+    элементов разрешима.
+\end{problem}
+Решение:\\
+а) По теореме Силова 3\\
+\begin{align*}
+    N_2 \equiv 1 (mod \ \ 2), \ \ N_2|5 &\Rightarrow N_2 = 1 \text{ или } N_2 = 5 \\
+    N_5 \equiv 1(mod \ \ 5),\ \ N_5|4 &\Rightarrow N_5=1
+\end{align*}
+То $\exists H \lhd G$, где $|H| = 5$ и $|G| = 20$\\
+$\therefore G \rhd H \cong \mathbb{Z}_5$\\
+$H$ абелева, то она разрешима. $|G/H|=\frac{20}{5}=4$,то $G/H \cong \mathbb{Z}_4$ или\\
+$G/H \cong V_4$, каждая из них абелева и разрешима.\\
+$\therefore G$ разрешима.\\
+\\
+б)\\
+$$
+N_5 \equiv 1 (mod \ \ 5),\ \ N_5 | 4 \Rightarrow N_5 = 1
+$$
+То $G \rhd H$, $\exists |H|=5^2=25$\\
+$\because 5 \text{ простое число}$\\
+$\therefore H$ абелева, то она разрешима. $|G/H|=\frac{100}{25}=4$,то $G/H \cong \mathbb{Z}_4$ или\\
+$G/H \cong V_4$, каждая из них абелева и разрешима.\\
+$\therefore G \rhd H \rhd [H,H] = {e}$
+$\therefore G(|G|=100)$ разрешима.
+
+\newpage
+\begin{problem}
+    Постройте производные ряды коммутантов для всех групп из 12 элементов.
+\end{problem}
+Решение:\\
+любая группа из 12 элементов изоморфна одной из\\
+1)$\mathbb{Z}_{12}$ ~~ 2)$\mathbb{Z}_2 \oplus \mathbb{Z}_6$ ~~ 3) $G=\langle a,b|O(a)=3,O(b)=4,bab^{-1}=a^{-1}\rangle$\\
+4)$D_6$ ~~ 5)$A_4$
+\begin{enumerate}
+    \begin{item}{$\mathbb{Z}_{12}$}
+        $$ \mathbb{Z}_{12} \supset \mathbb{Z}_{12}'=[\mathbb{Z}_{12},\mathbb{Z}_{12}]=\{e\} $$
+    \end{item}
+    \begin{item}{$\mathbb{Z}_2 \oplus \mathbb{Z}_6$}
+        $$G = \mathbb{Z}_2 \oplus \mathbb{Z}_6 \supset G'=[G,G]=\{e\}$$
+        так как $\mathbb{Z}_2 \oplus \mathbb{Z}_6$ абелева.
+    \end{item}
+    \begin{item}{$G=\langle a,b|O(a)=3,O(b)=4,bab^{-1}=a^{-1}\rangle$}
+        $$G \supset G'=[G,G]=\langle a \rangle \supset G''=[G',G']=\{e\}$$
+    \end{item}
+    \begin{item}{$D_6$}
+        $$D_6 \supset D_6'=\langle a^2 \rangle \supset D_6''=[D_6',D_6']=\{e\}$$
+    \end{item}
+    \begin{item}{$A_4$}
+        $$A_4 \supset [A_4,A_4]=V_4 \supset [V_4,V_4]=\{e\}$$
+    \end{item}
+\end{enumerate}
+То все они разрешимы.
+\end{document}

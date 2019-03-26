@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+
+\usepackage{amssymb,amsmath,amsthm,mathrsfs}
+
+\newtheoremstyle{neosn}{0.5\topsep}{0.5\topsep}{\rm}{}{\sc}{.}{ }{\thmname{#1}\thmnumber{ #2}\thmnote{ {\mdseries#3}}}
+\theoremstyle{neosn}
+\newtheorem{problem}{Problem}
+
+\begin{document}
+    \begin{center}
+        {\bf Correction of Homework on 05.03.2019}\\
+        Tanglin
+    \end{center}
+    
+    \problem{Study all sunsets of some set with operations symmetric difference and intersection.
+    Is it a ring? If it is, then is it commutative? Does it include identity element? Which elements are
+    reversible, zero divisor, idempotent?}\\
+    Solution:\\
+    Assume that set $S$ is an abitrary non-empty set. And let:
+    $$ \mathscr{M}(A):=\{D|D\subseteq A\} $$
+    First of all, we will verify some operations of symmetric difference.\\
+    Definition of symmetric difference:
+    $$ R \bigtriangleup S:= \{x|(x\in R \& x \notin S) \lor (x\in S \& x\notin R)\} $$
+    \begin{enumerate}
+        \item $R \bigtriangleup S = S \bigtriangleup R$\\
+            \begin{align*}
+                R \bigtriangleup S &= \{x|(x\in R \& x \notin S) \lor (x\in S \& x\notin R)\}\\
+                                    &= \{x|(x\in S \& x\notin R) \lor (x\in R \& x \notin S)\}\\
+                                    & = S \bigtriangleup R
+            \end{align*}
+
+        \item $(R \bigtriangleup S) \bigtriangleup T = R \bigtriangleup (S \bigtriangleup T)$\\
+            \begin{align*}
+                (R \bigtriangleup S) \bigtriangleup T &= \{x|(x\in R \& x \notin S) \lor (x\in S \& x\notin R)\} \bigtriangleup T\\
+                    &= \{x|((x\in R \& x \notin S) \lor (x\in S \& x\notin R)) \& x \notin T \\
+                    &\lor x \in T \& (\lnot ((x\in R \& x \notin S) \lor (x\in S \& x\notin R))) \}\\
+                    &= \{x|(x\in R \& x \notin S \& x\notin T) \lor (x\in S \& x\notin R \& x\notin T)\\
+                    &\lor(x\in T \& (x\notin R \lor x\in S)\& (x\notin S \lor x\in R ))\}\\
+                    &= \{x|(x\in R \& x \notin S \& x\notin T) \lor (x\in S \& x\notin R \& x\notin T)\\
+                    & \lor (x\in T \& (x\notin R \& x\notin S \lor x\in R \& x\in S))\}\\
+                    &= \{x|(x\in R \& x \notin S \& x\notin T) \lor (x\in S \& x\notin R \& x\notin T)\\
+                    & \lor (x\in T \& x\notin R \& x\notin S) \lor (x\in T \& x\in R \& x\in S)\}\\
+                    &= \{x|(x\in R \& x \notin S \& x\notin T) \lor (x\notin R \& x\in S \& x\notin T)\\
+                    & \lor (x\notin R \& x\notin S \& x\in T) \lor (x\in R \& x\in S \& x\in T)\}\\
+                    &= \{x|(x\in T \& x \notin S \& x\notin R) \lor (x\notin T \& x\in S \& x\notin R)\\
+                    & \lor (x\notin T \& x\notin S \& x\in R) \lor (x\in T \& x\in S \& x\in R)\}\\
+                    &= (T \bigtriangleup S) \bigtriangleup R\\
+                    &= (S \bigtriangleup T) \bigtriangleup R\\
+                    &= R \bigtriangleup (S \bigtriangleup T)
+            \end{align*}
+
+        \item $R\cap (S \bigtriangleup T) = (R \cap S) \bigtriangleup (R \cap T)$\\
+            For $R\cap (S \bigtriangleup T)$, we have:
+            \begin{align*}
+                R\cap (S \bigtriangleup T) &= \{x|x\in R \& (x\in S \& x\notin T \lor x\in T \& x\notin S)\}\\
+                    &= \{x|x\in R \& x\in S \& x\notin T \lor x\in R \& x\in T \& x\notin S\}
+            \end{align*}
+            For $(R \cap S) \bigtriangleup (R \cap T)$, we have:
+            \begin{align*}
+                (R \cap S) \bigtriangleup (R \cap T) &= \{(x\in R \& x\in S) \& (\lnot (x\in R \& x\in T))\\
+                        &\lor (x\in R \& x\in T) \& (\lnot (x\in R \& x\in S))\}\\
+                        &= \{x|x\in R \& x\in S \& (x\notin R \lor x\notin T) \\
+                        &\lor x\in R \& x\in T \& (x\notin R \lor x\notin S)\}\\
+                        &= \{x|x\in R \& x\in S \& x\notin T \lor x\in R \& x\in T \& x\notin S\}
+            \end{align*}
+            So we can assert that $R\cap (S \bigtriangleup T) = (R \cap S) \bigtriangleup (R \cap T)$.
+    \end{enumerate}
+
+    Now we will prove that set $\mathscr{M}(A)$ with operations symmetric difference and intersection is a ring.\\
+    \begin{enumerate}
+        \item $(\mathscr{M}(A),\bigtriangleup)$ is Abelian group.\\
+            \begin{enumerate}
+                \item Associativity:\\
+                    $\because \forall R,S,T \in \mathscr{M}(A), (R\bigtriangleup S)\bigtriangleup T =  R\bigtriangleup (S\bigtriangleup T)$\\
+                \item Commutativity:\\
+                    $\because \forall R,S \in \mathscr{M}(A), R\bigtriangleup S = S \bigtriangleup R$\\
+                \item Closure:\\
+                    $\forall R,S \in \mathscr{M}(A) \Rightarrow R \subseteq A, S \subseteq A \Rightarrow R\bigtriangleup S \subseteq A
+                    \Rightarrow R\bigtriangleup S \in \mathscr{M}(A)$
+                \item Zero element exists:
+                    Consider empty set in $\mathscr{M}(A)$\\
+                    $\forall R \in \mathscr{M}(A),$
+            \end{enumerate}
+    \end{enumerate}
+\end{document}
